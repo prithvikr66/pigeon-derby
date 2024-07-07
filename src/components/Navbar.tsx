@@ -2,9 +2,9 @@ import { useState } from "react";
 import MainLogo from "../assets/MainLogo.png";
 import { useNavigate } from "react-router-dom";
 const Navbar = () => {
-  const [navState, setNavState] = useState<"LOTTERY" | "HOW" | "GET">(
-    "LOTTERY"
-  );
+  const [navState, setNavState] = useState<
+    "LOTTERY" | "HOW" | "GET" | "PROFILE"
+  >("LOTTERY");
   const navigate = useNavigate();
   return (
     <div className="w-[80%] mx-auto flex items-center justify-between pt-[50px]">
@@ -44,6 +44,17 @@ const Navbar = () => {
           } font-advent-bold cursor-pointer`}
         >
           get $Race
+        </p>
+        <p
+          onClick={() => {
+            navigate("/profile");
+            setNavState("PROFILE");
+          }}
+          className={`${
+            navState === "PROFILE" ? "text-[#FFFF00]" : "text-[#3D3D3D]"
+          } font-advent-bold cursor-pointer`}
+        >
+          profile
         </p>
       </div>
     </div>

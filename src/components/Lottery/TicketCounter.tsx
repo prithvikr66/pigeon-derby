@@ -95,7 +95,6 @@ const TicketCounter = () => {
                 {numberOfTicketsSelected === 0
                   ? "-"
                   : ticketPrice && numberOfTicketsSelected * ticketPrice}{" "}
-                $RACE ($50)
               </p>
             </div>
             <div className=" h-[1px] w-[80%] mx-auto bg-gradient-to-r from-[#FFFF00] to-transparent mt-[10px]" />
@@ -123,6 +122,7 @@ const TicketCounter = () => {
           </div>
         </div>
       </div>
+     
     </div>
   );
 };
