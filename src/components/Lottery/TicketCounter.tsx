@@ -1,15 +1,27 @@
 import { useEffect, useState } from "react";
 import TicketCounterImage from "../../assets/Lottery/TicketCounter.svg";
 import TicketIconMain from "../../assets/Lottery/TicketIcon.svg";
+import { walletAddress } from "../../atoms/wallet";
 import { TicketIcon } from "../Icons";
+import { useRecoilValue } from "recoil";
+import WalletConnect from "../WalletConnect";
 const TicketCounter = () => {
   const [numberOfTicketsSelected, setNumberOfTicketsSelected] =
     useState<number>(0);
+  const [walletBalance, setWalletBalance] = useState<number | null>();
   const [ticketPrice, setTicketPrice] = useState<number | null>();
+  const wallet = useRecoilValue(walletAddress);
 
   useEffect(() => {
     setTicketPrice(100);
+    setWalletBalance(5);
   });
+
+  const handleBuyTickets = () => {
+    // ---------------------
+    // TODO
+    // --------------------
+  };
   return (
     <div className=" w-[25%] font-advent-bold uppercase">
       <div className=" relative">
@@ -19,10 +31,7 @@ const TicketCounter = () => {
             <p className=" text-[24px] text-[#ffffff] p-5 mt-[10px]">
               ticket <span className=" text-[#F01E31]">counter</span>
             </p>
-            <img
-              src={TicketIconMain}
-              className=" w-[50%] h-auto mx-auto"
-            />
+            <img src={TicketIconMain} className=" w-[50%] h-auto mx-auto" />
             <div className=" w-[80%] mx-auto flex justify-between mt-[20px]">
               <button
                 onClick={() => setNumberOfTicketsSelected(1)}
@@ -90,20 +99,27 @@ const TicketCounter = () => {
               </p>
             </div>
             <div className=" h-[1px] w-[80%] mx-auto bg-gradient-to-r from-[#FFFF00] to-transparent mt-[10px]" />
-            <div className=" w-full flex justify-center">
-              {1 ? (
-                <button className=" p-[10px] rounded-t-[8px] rounded-bl-[44px] rounded-br-[8px] text-[#ffffff] bg-[#3A80FE] w-[80%] mx-auto uppercase text-[24px] border  mt-[20px] shadow-xl shadow-[#CEDFFF]">
-                  let's go!
-                </button>
+
+            <div className=" w-full flex justify-center mt-[10px]">
+              {wallet ? (
+                <div className=" w-full flex flex-col items-center">
+                  <button
+                    className=" bg-[#00FF76] rounded-tr-[12px] rounded-bl-[12px] p-[10px] w-[80%] mx-auto font-advent-bold text-[20px] uppercase text-[#3D3D3D]"
+                    onClick={handleBuyTickets}
+                  >
+                    get me in!
+                  </button>
+                  <p className=" text-center text-[#FFFF00] text-[20px] mt-[20px] pb-[20px] font-advent-regular">
+                    Balance-{" "}
+                    <span className=" text-[#ffffff]">
+                      {walletBalance}K RACE
+                    </span>
+                  </p>
+                </div>
               ) : (
-                <button className=" p-[10px] rounded-t-[8px] rounded-bl-[44px] rounded-br-[8px] text-[#5DF7A4] bg-[#3D3D3D] w-[80%] mx-auto uppercase text-[24px] border  mt-[20px] shadow-xl shadow-[#CEDFFF]">
-                  connect wallet
-                </button>
+                <WalletConnect />
               )}
             </div>
-            <p className=" text-center text-[#85B6FF] text-[20px] mt-[20px] pb-[20px]">
-              Balance-
-            </p>
           </div>
         </div>
       </div>
