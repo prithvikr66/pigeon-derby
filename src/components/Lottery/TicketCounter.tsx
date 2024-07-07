@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import TicketCounterImage from "../../assets/Lottery/TicketCounter.svg";
 import TicketIconMain from "../../assets/Lottery/TicketIcon.svg";
-import { walletAddress } from "../../atoms/wallet";
+// import { walletAddress } from "../../atoms/wallet";
 import { TicketIcon } from "../Icons";
-import { useRecoilValue } from "recoil";
-import WalletConnect from "../WalletConnect";
+// import { useRecoilValue } from "recoil";
+// import WalletConnect from "../WalletConnect";
+import { WalletModalButton } from "@solana/wallet-adapter-react-ui";
+import { useWallet } from '@solana/wallet-adapter-react'
 const TicketCounter = () => {
   const [numberOfTicketsSelected, setNumberOfTicketsSelected] =
     useState<number>(0);
   const [walletBalance, setWalletBalance] = useState<number | null>();
   const [ticketPrice, setTicketPrice] = useState<number | null>();
-  const wallet = useRecoilValue(walletAddress);
+  // const wallet = useRecoilValue(walletAddress);
+  const { publicKey } = useWallet()
 
   useEffect(() => {
     setTicketPrice(100);
@@ -35,41 +38,37 @@ const TicketCounter = () => {
             <div className=" w-[80%] mx-auto flex justify-between mt-[20px]">
               <button
                 onClick={() => setNumberOfTicketsSelected(1)}
-                className={` text-[19px] w-[22%]  p-[5px] rounded-tr-[12px] rounded-bl-[12px] border-[1px] ${
-                  numberOfTicketsSelected === 1
-                    ? "bg-[#FFFF00] text-[#000000]"
-                    : "bg-none text-[#FFFF00]"
-                } border-[#F01E31] flex items-center gap-[5px] `}
+                className={` text-[19px] w-[22%]  p-[5px] rounded-tr-[12px] rounded-bl-[12px] border-[1px] ${numberOfTicketsSelected === 1
+                  ? "bg-[#FFFF00] text-[#000000]"
+                  : "bg-none text-[#FFFF00]"
+                  } border-[#F01E31] flex items-center gap-[5px] `}
               >
                 <TicketIcon />1
               </button>
               <button
                 onClick={() => setNumberOfTicketsSelected(3)}
-                className={` text-[19px] w-[22%]  p-[5px] rounded-tr-[12px] rounded-bl-[12px] border-[1px] ${
-                  numberOfTicketsSelected === 3
-                    ? "bg-[#FFFF00] text-[#000000]"
-                    : "bg-none text-[#FFFF00]"
-                } border-[#F01E31] flex items-center gap-[5px] `}
+                className={` text-[19px] w-[22%]  p-[5px] rounded-tr-[12px] rounded-bl-[12px] border-[1px] ${numberOfTicketsSelected === 3
+                  ? "bg-[#FFFF00] text-[#000000]"
+                  : "bg-none text-[#FFFF00]"
+                  } border-[#F01E31] flex items-center gap-[5px] `}
               >
                 <TicketIcon />3
               </button>
               <button
                 onClick={() => setNumberOfTicketsSelected(5)}
-                className={` text-[19px] w-[22%]  p-[5px] rounded-tr-[12px] rounded-bl-[12px] border-[1px] ${
-                  numberOfTicketsSelected === 5
-                    ? "bg-[#FFFF00] text-[#000000]"
-                    : "bg-none text-[#FFFF00]"
-                } border-[#F01E31] flex items-center gap-[5px] `}
+                className={` text-[19px] w-[22%]  p-[5px] rounded-tr-[12px] rounded-bl-[12px] border-[1px] ${numberOfTicketsSelected === 5
+                  ? "bg-[#FFFF00] text-[#000000]"
+                  : "bg-none text-[#FFFF00]"
+                  } border-[#F01E31] flex items-center gap-[5px] `}
               >
                 <TicketIcon />5
               </button>
               <button
                 onClick={() => setNumberOfTicketsSelected(10)}
-                className={` text-[19px] w-[22%]  p-[5px] rounded-tr-[12px] rounded-bl-[12px] border-[1px] ${
-                  numberOfTicketsSelected === 10
-                    ? "bg-[#FFFF00] text-[#000000]"
-                    : "bg-none text-[#FFFF00]"
-                } border-[#F01E31] flex items-center gap-[5px] `}
+                className={` text-[19px] w-[22%]  p-[5px] rounded-tr-[12px] rounded-bl-[12px] border-[1px] ${numberOfTicketsSelected === 10
+                  ? "bg-[#FFFF00] text-[#000000]"
+                  : "bg-none text-[#FFFF00]"
+                  } border-[#F01E31] flex items-center gap-[5px] `}
               >
                 <TicketIcon />
                 10
@@ -100,7 +99,7 @@ const TicketCounter = () => {
             <div className=" h-[1px] w-[80%] mx-auto bg-gradient-to-r from-[#FFFF00] to-transparent mt-[10px]" />
 
             <div className=" w-full flex justify-center mt-[10px]">
-              {wallet ? (
+              {publicKey ? (
                 <div className=" w-full flex flex-col items-center">
                   <button
                     className=" bg-[#00FF76] rounded-tr-[12px] rounded-bl-[12px] p-[10px] w-[80%] mx-auto font-advent-bold text-[20px] uppercase text-[#3D3D3D]"
@@ -116,13 +115,14 @@ const TicketCounter = () => {
                   </p>
                 </div>
               ) : (
-                <WalletConnect />
+                // <WalletConnect />
+                <WalletModalButton>Connect Wallet</WalletModalButton>
               )}
             </div>
           </div>
         </div>
       </div>
-     
+
     </div>
   );
 };
