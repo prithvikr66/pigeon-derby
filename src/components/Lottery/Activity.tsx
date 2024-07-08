@@ -85,7 +85,8 @@ const Activity = () => {
       },
     ];
     setActivityData(data);
-  }, [activityData]);
+  }, []);
+
   return (
     <div className=" w-full h-[550px] mt-[200px] xl:mt-[100px] bg-[#111111] rounded-[8px] mb-[100px] font-advent-bold uppercase overflow-auto">
       <div className=" w-[90%] mx-auto">
