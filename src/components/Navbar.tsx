@@ -4,20 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { WalletDisconnectButton, WalletModalButton } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
 
-export {
-  Transition,
-  Dialog,
-  Disclosure,
-  Switch,
-  Popover,
-  RadioGroup,
-  Tab,
-  Combobox,
-  Listbox,
-  Menu,
-  Portal,
-  FocusTrap,
-} from "@headlessui/react";
 
 const Navbar = () => {
   const { publicKey } = useWallet()

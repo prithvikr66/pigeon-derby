@@ -1,12 +1,12 @@
 "use client"
-import React, { useMemo } from 'react';
-import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
-import { LedgerWalletAdapter, PhantomWalletAdapter, SolflareWalletAdapter, SolongWalletAdapter, TorusWalletAdapter } from '@solana/wallet-adapter-wallets';
+import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react';
 import {
     WalletModalProvider,
 } from '@solana/wallet-adapter-react-ui';
+import { LedgerWalletAdapter, PhantomWalletAdapter, SolflareWalletAdapter, SolongWalletAdapter, TorusWalletAdapter } from '@solana/wallet-adapter-wallets';
 import { clusterApiUrl } from '@solana/web3.js';
+import { useMemo } from 'react';
 
 // Default styles that can be overridden by your app
 require('@solana/wallet-adapter-react-ui/styles.css');
