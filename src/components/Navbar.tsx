@@ -1,74 +1,104 @@
-import { useState } from "react";
 import MainLogo from "../assets/MainLogo.png";
-import { useNavigate } from "react-router-dom";
-import { WalletDisconnectButton, WalletModalButton } from "@solana/wallet-adapter-react-ui";
+import { Link, useLocation } from "react-router-dom";
 import { useWallet } from "@solana/wallet-adapter-react";
 
-
 const Navbar = () => {
-  const { publicKey } = useWallet()
+  const { publicKey } = useWallet();
 
-  const [navState, setNavState] = useState<
-    "LOTTERY" | "HOW" | "GET" | "PROFILE"
-  >("LOTTERY");
-  const navigate = useNavigate();
+  const location = useLocation();
   return (
-    <div className="w-[80%] mx-auto flex items-center justify-between pt-[50px]">
-      <div>
-        <img src={MainLogo} />
+    <div>
+      <div className="hidden w-[80%] mx-auto lg:flex items-center justify-between pt-[50px] z-50">
+        <div>
+          <img src={MainLogo} />
+        </div>
+        <div className=" uppercase text-[24px] flex items-center gap-[40px]">
+          <Link to={"/"}>
+            <p
+              className={`${
+                location.pathname === "/" ? "text-[#FFFF00]" : "text-[#3D3D3D]"
+              } font-advent-bold cursor-pointer`}
+            >
+              lottery
+            </p>
+          </Link>
+          <Link to={"/how-to-play"}>
+            <p
+              className={`${
+                location.pathname === "/how-to-play"
+                  ? "text-[#FFFF00]"
+                  : "text-[#3D3D3D]"
+              } font-advent-bold cursor-pointer`}
+            >
+              how to play
+            </p>
+          </Link>
+          <Link to={"/get-race"}>
+            <p
+              className={`${
+                location.pathname === "/get-race"
+                  ? "text-[#FFFF00]"
+                  : "text-[#3D3D3D]"
+              } font-advent-bold cursor-pointer`}
+            >
+              get $Race
+            </p>
+          </Link>
+
+          {publicKey && (
+            <Link to="/profile">
+              <div className=" profile bg-[#3D3D3D] font-advent-bold text-[18px] text-white p-[15px] flex items-center gap-2 ">
+                <div className=" rounded-full h-[10px] w-[10px] bg-[#FFFF00] " />
+                <span>{`${publicKey.toString().slice(0, 4)}...${publicKey
+                  .toString()
+                  .slice(publicKey.toString().length - 4)}`}</span>
+              </div>
+            </Link>
+          )}
+        </div>
       </div>
-      <div className=" uppercase text-[24px] flex items-center gap-[40px]">
-        <p
-          onClick={() => {
-            navigate("/");
-            setNavState("LOTTERY");
-          }}
-          className={`${navState === "LOTTERY" ? "text-[#FFFF00]" : "text-[#3D3D3D]"
-            } font-advent-bold cursor-pointer`}
-        >
-          lottery
-        </p>
-        <p
-          onClick={() => {
-            navigate("/how-to-play");
-            setNavState("HOW");
-          }}
-          className={`${navState === "HOW" ? "text-[#FFFF00]" : "text-[#3D3D3D]"
-            } font-advent-bold cursor-pointer`}
-        >
-          how to play
-        </p>
-        <p
-          onClick={() => {
-            navigate("/get-race");
-            setNavState("GET");
-          }}
-          className={`${navState === "GET" ? "text-[#FFFF00]" : "text-[#3D3D3D]"
-            } font-advent-bold cursor-pointer`}
-        >
-          get $Race
-        </p>
-        <p
-          onClick={() => {
-            navigate("/profile");
-            setNavState("PROFILE");
-          }}
-          className={`${navState === "PROFILE" ? "text-[#FFFF00]" : "text-[#3D3D3D]"
-            } font-advent-bold cursor-pointer`}
-        >
-          profile
-        </p>
-
-        {publicKey ? (
-          // <p style={{ color: 'black', backgroundColor: "#FFFF00", padding: "0.2rem", borderRadius: "8px", cursor: "pointer" }} onClick={() => {
-
-          // }}>{`${publicKey.toBase58().substr(0, 4)}...${publicKey
-          //   .toBase58()
-          //   .substr(-4)}`}</p>
-          <WalletDisconnectButton />
-        ) : (
-          <WalletModalButton>Connect Wallet</WalletModalButton>
-        )}
+      {/* ------------------------------------------- */}
+      <div className=" lg:hidden profile  w-[90%] mx-auto uppercase">
+        <div className=" bg-[#3D3D3D] p-[10px] text-[24px] text-white flex items-center justify-center font-advent-bold gap-2">
+          <div className=" rounded-full h-[15px] w-[15px] bg-[#FFFF00] " />
+          <span>
+            {publicKey &&
+              `${publicKey!.toString().slice(0, 6)}......${publicKey!
+                .toString()
+                .slice(publicKey!.toString().length - 6)}`}
+          </span>
+        </div>
+      </div>
+      <div className=" flex justify-between uppercase w-[90%] mx-auto mt-[30px]">
+        <Link to={"/"}>
+          <p
+            className={`${
+              location.pathname === "/" ? "text-[#FFFF00]" : "text-white"
+            } font-advent-bold text-[20px]`}
+          >
+            lottery
+          </p>
+        </Link>
+        <Link to={"/profile"}>
+          <p
+            className={`${
+              location.pathname === "/profile" ? "text-[#FFFF00]" : "text-white"
+            } font-advent-bold text-[20px]`}
+          >
+            profile
+          </p>
+        </Link>
+        <Link to={"/get-race"}>
+          <p
+            className={`${
+              location.pathname === "/get-race"
+                ? "text-[#FFFF00]"
+                : "text-white"
+            } font-advent-bold text-[20px]`}
+          >
+            get $RACE
+          </p>
+        </Link>
       </div>
     </div>
   );

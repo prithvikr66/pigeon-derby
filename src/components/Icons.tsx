@@ -84,4 +84,32 @@ const SolanaIcon = () => {
     </svg>
   );
 };
-export { TicketIcon, SolanaIcon, BirdTokenIcon };
+const ResultIcon = ({ status }: { status: "WON" | "LOST" }) => {
+  return (
+    <svg
+      width="130"
+      height="42"
+      viewBox="0 0 130 42"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M110.35 1H3C1.89543 1 1 1.89543 1 3V34.1541C1 34.9317 1.4507 35.6388 2.15558 35.9671L12.5599 40.813C12.8244 40.9362 13.1126 41 13.4043 41H127C128.105 41 129 40.1046 129 39V9.06656C129 8.22602 128.474 7.47517 127.685 7.18742L111.035 1.12085C110.816 1.0409 110.584 1 110.35 1Z"
+        stroke="#FFFF00"
+        strokeWidth="0.5"
+      />
+      <text
+        x="50%"
+        y="55%"
+        textAnchor="middle"
+        dominantBaseline="middle"
+        fill={status === "LOST" ? "#F01E31" : "#99EE2D"}
+        className="font-bold"
+      >
+        {status}
+      </text>
+    </svg>
+  );
+};
+
+export { TicketIcon, SolanaIcon, BirdTokenIcon, ResultIcon };
