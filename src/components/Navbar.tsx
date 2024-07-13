@@ -64,13 +64,19 @@ const Navbar = () => {
         </div>
         <div className=" lg:hidden profile  w-[90%] mx-auto uppercase mt-[30px]">
           <div className=" bg-[#3D3D3D] p-[10px] text-[24px] text-white flex items-center justify-center font-advent-bold gap-2">
-            <div className=" rounded-full h-[15px] w-[15px] bg-[#FFFF00] " />
-            <span>
-              {publicKey &&
-                `${publicKey!.toString().slice(0, 6)}......${publicKey!
-                  .toString()
-                  .slice(publicKey!.toString().length - 6)}`}
-            </span>
+            {publicKey ? (
+              <>
+                <div className=" rounded-full h-[15px] w-[15px] bg-[#FFFF00] " />
+                <span>
+                  {publicKey &&
+                    `${publicKey!.toString().slice(0, 6)}......${publicKey!
+                      .toString()
+                      .slice(publicKey!.toString().length - 6)}`}
+                </span>
+              </>
+            ) : (
+              <p>connect Wallet</p>
+            )}
           </div>
         </div>
         <div className=" flex justify-between uppercase w-[90%] mx-auto mt-[30px]">

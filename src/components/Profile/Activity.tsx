@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { TicketIcon, SolanaIcon, BirdTokenIcon, ResultIcon } from "../Icons";
+import {
+  TicketIcon,
+  SolanaIcon,
+  BirdTokenIcon,
+  ResultIcon,
+  SolanaIconNav,
+} from "../Icons";
 import ActivityFooter from "../../assets/ActivityFooter.png";
 interface ActivityData {
   date: string;
@@ -8,6 +14,7 @@ interface ActivityData {
   paid: number;
   status: "WON" | "LOST";
   txn: string;
+  amountWon?: number;
 }
 const Activity = () => {
   const [activityData, setActivityData] = useState<ActivityData[]>([]);
@@ -29,6 +36,7 @@ const Activity = () => {
         paid: 1500,
         status: "WON",
         txn: "0xdef456",
+        amountWon: 10,
       },
       {
         date: "05/07",
@@ -53,6 +61,7 @@ const Activity = () => {
         paid: 2000,
         status: "WON",
         txn: "0xmnq345",
+        amountWon: 10,
       },
       {
         date: "05/07",
@@ -69,6 +78,7 @@ const Activity = () => {
         paid: 4000,
         status: "WON",
         txn: "0xrst901",
+        amountWon: 10,
       },
       {
         date: "05/07",
@@ -85,6 +95,7 @@ const Activity = () => {
         paid: 4500,
         status: "WON",
         txn: "0xxyz567",
+        amountWon: 10,
       },
       {
         date: "05/07",
@@ -160,7 +171,7 @@ const Activity = () => {
       </div>
       <img
         src={ActivityFooter}
-        className=" w-full h-auto mt-[-90px] hidden lg:block"
+        className=" w-full h-auto mt-[-80px] hidden lg:block mb-[50px]"
       />
 
       <div className=" lg:hidden w-[100%] mt-[40px] p-[20px] mx-auto bg-[#111111] rounded-[6px] uppercase">
@@ -210,8 +221,19 @@ const Activity = () => {
               <p className=" font-advent-regular text-[16px] text-[#FFFF00]">
                 result
               </p>
-              <p className=" font-advent-regular text-[16px] text-[#ffffff]">
-                {data.status}
+              <p
+                className={` font-advent-bold text-[16px] flex gap-1 items-center ${
+                  data.status === "WON" ? "text-[#99EE2D]" : "text-[#F01E31]"
+                }`}
+              >
+                <p>
+                  {data.status === "WON"
+                    ? `WON $${data.amountWon}`
+                    : data.status}
+                </p>
+                <span>
+                  <SolanaIconNav />
+                </span>
               </p>
             </div>
             <div className=" w-full h-[1px] bg-gradient-to-r from-[#FFFF00] to-[#111111] mt-[20px]" />

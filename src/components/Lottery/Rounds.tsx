@@ -10,7 +10,7 @@ const Rounds = () => {
     setNumberOfTicketsSold(80);
   }, [numberOfTicketsSold, roundNumber]);
   return (
-    <div className=" text-[#FFFF00] uppercase text-[24px] font-advent-bold">
+    <div className=" text-[#FFFF00] uppercase text-[20px] lg:text-[24px] font-advent-bold">
       <div className=" flex justify-between">
         <p>Round {roundNumber} </p>
         <p className=" text-[#00FF76]">{numberOfTicketsSold}/100 Tickets</p>

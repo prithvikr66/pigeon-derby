@@ -10,7 +10,7 @@ const TicketsStatus = () => {
   });
 
   return (
-    <div className=" w-[73%] 2xl:w-[68%]">
+    <div className="hidden lg:block w-[73%] 2xl:w-[68%]">
       <div className=" relative">
         <img src={TicketStatusImage} className=" w-full h-auto" />
         <div className=" absolute inset-0 top-[10%]">

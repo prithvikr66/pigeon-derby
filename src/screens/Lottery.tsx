@@ -8,10 +8,9 @@ const Lottery = () => {
     <div className=" min-h-screen">
       <div className=" w-[80%] mx-auto mt-[50px]  ">
         <Rounds />
-        <div className="w -[80%] flex justify-between items-center mt-[50px]">
+        <div className="w -[80%] flex flex-col lg:flex-row justify-between items-center mt-[50px]">
           <TicketCounter />
-            <TicketsStatus />
-
+          <TicketsStatus />
         </div>
         <Activity />
       </div>
