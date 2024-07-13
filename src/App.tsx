@@ -4,6 +4,7 @@ import Profile from "./screens/Profile";
 import Navbar from "./components/Navbar";
 import { RecoilRoot } from "recoil";
 import { WalletContextProvider } from "./hooks/useWallet";
+import Footer from "./components/Footer";
 function App() {
   return (
     <WalletContextProvider>
@@ -15,6 +16,7 @@ function App() {
               <Route path="/" element={<Lottery />} />
               <Route path="/profile" element={<Profile />} />
             </Routes>
+            <Footer />
           </div>
         </BrowserRouter>
       </RecoilRoot>

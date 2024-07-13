@@ -5,7 +5,7 @@ import TicketsStatus from "../components/Lottery/TicketsStatus";
 
 const Lottery = () => {
   return (
-    <div className=" h-[200vh]">
+    <div className=" min-h-screen">
       <div className=" w-[80%] mx-auto mt-[50px]  ">
         <Rounds />
         <div className="w -[80%] flex justify-between items-center mt-[50px]">
